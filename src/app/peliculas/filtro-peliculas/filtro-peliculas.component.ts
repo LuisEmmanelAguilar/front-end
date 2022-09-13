@@ -39,7 +39,6 @@ export class FiltroPeliculasComponent implements OnInit {
 
 
   ngOnInit(): void {
-    
     this.generosService.obtenerTodos()
     .subscribe(generos =>{
       this.generos = generos;

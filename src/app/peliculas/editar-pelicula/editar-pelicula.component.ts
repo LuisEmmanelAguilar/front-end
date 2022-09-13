@@ -22,6 +22,7 @@ export class EditarPeliculaComponent implements OnInit {
   cinesSeleccionados: MultipleSelectorModel[];
   cinesNoSeleccionados: MultipleSelectorModel[];
   actoresSeleccionados: actorPeliculaDTO[];
+
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
       this.peliculasService.putGet(params.id)
