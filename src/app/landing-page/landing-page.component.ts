@@ -9,17 +9,22 @@ import { PeliculasService } from '../peliculas/peliculas.service';
 })
 export class LandingPageComponent implements OnInit {
 
-  constructor(
-    private peliculasService: PeliculasService) { }
+  constructor(private peliculasService: PeliculasService){}
 
   ngOnInit(): void {
-    //this.cargarDatos();
+    this.cargarDatos();
   }
-  
   peliculasEnCines: PeliculaDTO[];
   peliculasProximosEstrenos: PeliculaDTO[];
 
   cargarDatos(){
+    this.peliculasService.obtenerLandingPage().subscribe(landingPage => {
+      this.peliculasEnCines = landingPage.enCines;
+      this.peliculasProximosEstrenos = landingPage.proximosEstrenos;
+    });
   }
 
+  borrado(){
+    this.cargarDatos();
+  }
 }

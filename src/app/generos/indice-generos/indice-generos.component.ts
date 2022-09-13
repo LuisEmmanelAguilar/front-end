@@ -1,9 +1,9 @@
 import { HttpResponse } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { generoDTO } from '../genero';
-import { GenerosService } from '../generos.service';
 import { PageEvent } from '@angular/material/paginator';
 import { MatTable } from '@angular/material/table';
+import { generoDTO } from '../genero';
+import { GenerosService } from '../generos.service';
 
 @Component({
   selector: 'app-indice-generos',
@@ -12,20 +12,17 @@ import { MatTable } from '@angular/material/table';
 })
 export class IndiceGenerosComponent implements OnInit {
 
-  constructor(
-    private generosService: GenerosService) { 
-
-    }
+  constructor(private generosService: GenerosService) { }
 
   @ViewChild('table')
   table: MatTable<any>;
-  
+
   generos: generoDTO[];
   columnasAMostrar = ['id', 'nombre', 'acciones'];
   cantidadTotalRegistros;
   paginaActual = 1;
   cantidadRegistrosAMostrar = 10;
-  
+
   ngOnInit(): void {
     this.cargarRegistros(this.paginaActual, this.cantidadRegistrosAMostrar);
   }
@@ -46,8 +43,9 @@ export class IndiceGenerosComponent implements OnInit {
 
   borrar(id: number){
     this.generosService.borrar(id)
-      .subscribe(() => {
-        this.cargarRegistros(this.paginaActual, this.cantidadRegistrosAMostrar);
-      }, error => console.error(error));
+    .subscribe(() => {
+      this.cargarRegistros(this.paginaActual, this.cantidadRegistrosAMostrar);
+    }, error => console.error(error));
   }
+
 }
